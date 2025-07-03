@@ -3,7 +3,7 @@ public class Emprestimo
     public Livro Livro { get; private set; }
     public Membro Membro { get; private set; }
     public DateTime DataEmprestimo { get; private set; }
-    public DateTime DataDevolucaoPrevista { get; private set; }
+    public DateTime DataDevolucaoPrevista { get; set; }
     public DateTime? DataDevolucaoReal { get; set; }
 
     public Emprestimo(Livro livro, Membro membro)
@@ -11,7 +11,7 @@ public class Emprestimo
         Livro = livro;
         Membro = membro;
         DataEmprestimo = DateTime.Now;
-        DataDevolucaoPrevista = DateTime.Now.AddDays(14); // Prazo de 14 dias para devolução
+        DataDevolucaoPrevista = DateTime.Now.AddDays(14);
         DataDevolucaoReal = null;
     }
 
@@ -20,7 +20,10 @@ public class Emprestimo
         if (DataDevolucaoReal.HasValue && DataDevolucaoReal.Value > DataDevolucaoPrevista)
         {
             var diasAtraso = (DataDevolucaoReal.Value - DataDevolucaoPrevista).Days;
-            return diasAtraso * 1.50m; // R$ 1,50 por dia de atraso
+            if (diasAtraso > 0)
+            {
+                return diasAtraso * 1.50m; // R$ 1,50 por dia de atraso
+            }
         }
         return 0;
     }
