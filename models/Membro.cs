@@ -13,18 +13,14 @@ public class Membro
 
     public void ExibirDetalhes()
     {
-        Console.WriteLine($"ID: {Id}, Nome: {Nome}");
+        Console.WriteLine($"ID: {Id} | Nome: {Nome}");
         if (Emprestimos.Any(e => e.DataDevolucaoReal == null))
         {
-            Console.WriteLine("  Livros emprestados:");
+            Console.WriteLine("  Livros emprestados atualmente:");
             foreach (var emprestimo in Emprestimos.Where(e => e.DataDevolucaoReal == null))
             {
-                Console.WriteLine($"    - \"{emprestimo.Livro.Titulo}\" (Devolver em: {emprestimo.DataDevolucaoPrevista.ToShortDateString()})");
+                Console.WriteLine($"    - Livro \"{emprestimo.Livro.Titulo}\" (Devolver em: {emprestimo.DataDevolucaoPrevista.ToShortDateString()})");
             }
-        }
-        else
-        {
-            Console.WriteLine("  Nenhum livro emprestado no momento.");
         }
     }
 }
