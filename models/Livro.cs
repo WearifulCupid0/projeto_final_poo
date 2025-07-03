@@ -15,6 +15,6 @@ public class Livro
 
     public void ExibirDetalhes()
     {
-        Console.WriteLine($"ID: {Id}, Título: \"{Titulo}\", Autor: {Autor}, Disponível: {(Disponivel ? "Sim" : "Não")}");
+        Console.WriteLine($"  ID: {Id} | Título: \"{Titulo}\" | Autor: {Autor} | Disponível: {(Disponivel ? "Sim" : "Não")}");
     }
 }
